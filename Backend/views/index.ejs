@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VideoTube</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@lucide/web/dist/umd/lucide.js"></script>
+    <style>
+      /* .sidebar-item {
+        @apply flex  items-center gap-4 px-4 py-3 hover:bg-neutral-800 rounded-lg text-white cursor-pointer;
+      }
+      .category-pill {
+        @apply px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap;
+      }
+      .category-pill.active {
+        @apply bg-pink-500 text-white;
+      }
+      .category-pill:not(.active) {
+        @apply bg-neutral-800 text-white hover:bg-neutral-700;
+      } */
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <div
+        class="w-16 lg:w-60 bg-black fixed top-0 bottom-0 left-0 flex flex-col py-4"
+      >
+        <div class="px-4 mb-6">
+          <button
+            class="text-pink-500 p-2 hover:bg-neutral-800 rounded-full lg:hidden"
+          >
+            <i data-lucide="play" class="w-6 h-6"></i>
+          </button>
+          <div class="hidden lg:flex items-center gap-2">
+            <i data-lucide="play" class="w-8 h-8 text-pink-500"></i>
+            <span class="text-xl font-bold">VideoTube</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <div class="sidebar-item">
+            <i data-lucide="home" class="w-6 h-6"></i>
+            <span class="hidden lg:block">Home</span>
+          </div>
+          <div class="sidebar-item">
+            <i data-lucide="user" class="w-6 h-6"></i>
+            <span class="lg:block hidden">Profile</span>
+          </div>
+          <div class="sidebar-item">
+            <i data-lucide="clock" class="w-6 h-6"></i>
+            <span class="hidden lg:block">History</span>
+          </div>
+          <div class="sidebar-item">
+            <i data-lucide="calendar" class="w-6 h-6"></i>
+            <span class="hidden lg:block">Library</span>
+          </div>
+          <div class="sidebar-item">
+            <i data-lucide="trending-up" class="w-6 h-6"></i>
+            <span class="hidden lg:block">Trending</span>
+          </div>
+          <div class="sidebar-item">
+            <i data-lucide="settings" class="w-6 h-6"></i>
+            <span class="hidden lg:block">Settings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-1 ml-16 lg:ml-60">
+        <!-- Header -->
+        <header
+          class="fixed top-0 right-0 left-16 lg:left-60 bg-black h-16 flex items-center justify-between px-4 z-50"
+        >
+          <div class="flex-1 max-w-2xl">
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="Search videos..."
+                class="w-full bg-neutral-900 border border-neutral-700 rounded-full py-2 pl-10 pr-4 text-white placeholder-gray-400 focus:outline-none focus:border-pink-500"
+              />
+              <i
+                data-lucide="search"
+                class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"
+              ></i>
+              <button
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-pink-500 text-white px-4 py-1 rounded-full text-sm"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 ml-4">
+            <button class="p-2 hover:bg-neutral-800 rounded-full">
+              <i data-lucide="video" class="w-6 h-6 text-white"></i>
+            </button>
+            <button class="p-2 hover:bg-neutral-800 rounded-full">
+              <i data-lucide="bell" class="w-6 h-6 text-white"></i>
+            </button>
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+              alt="Profile"
+              class="w-8 h-8 rounded-full object-cover"
+            />
+          </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="pt-20 px-6">
+          <!-- Featured Video -->
+          <div class="relative h-[400px] rounded-3xl overflow-hidden mb-8">
+            <img
+              src="./images/homeImage.jpg"
+              alt="Featured"
+              class="w-full h-full object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent p-12 flex flex-col justify-center"
+            >
+              <h1 class="text-5xl font-bold max-w-xl leading-tight">
+                Your gateway to unlimited entertainment
+              </h1>
+              <p class="text-lg text-gray-200 mt-4 max-w-lg">
+                With our seamless streaming technology, you can effortlessly
+                discover and enjoy content that resonates with your interests.
+              </p>
+            </div>
+            <div class="absolute bottom-8 right-12 flex items-center gap-4">
+              <span class="text-lg font-medium"
+                >Top 10 most interesting places in the world. Must visit!</span
+              >
+              <button
+                class="bg-pink-500 rounded-full p-4 hover:bg-pink-600 transition-colors"
+              >
+                <i data-lucide="play" class="w-6 h-6"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Categories -->
+
+          <!-- Video Grid -->
+          <div
+            id="videoGrid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            <!-- Video cards will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Fetch and display videos
+      async function fetchVideos() {
+        try {
+          // TODO: API Call - GET /api/videos
+          const response = await fetch(
+            "http://localhost:8000/api/v1/videos/homedsc"
+          );
+          if (!response.ok) {
+            console.log("Error from Fetch API");
+            throw Error();
+          }
+          const res = await response.json();
+          const vids = res.data;
+          console.log(vids);
+          const videos = [];
+          for (let i = 0; i < vids.length; i++) {
+            const temp = {
+              id: vids[i]._id,
+              thumbnail: vids[i].thumbNail,
+              title: vids[i].title,
+              channel: {
+                name: vids[i].userDetails?.username,
+                avatar: vids[i].userDetails?.avatar,
+              },
+              views: vids[i].views,
+              timestamp: vids[i].createdAt,
+            };
+            videos.push(temp);
+          }
+
+          // Temporary mock data
+          // const videos = [
+          //   {
+          //     id: 1,
+          //     thumbnail:
+          //       "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",
+          //     title: "50 Best Places to Visit in Europe - Travel Guide",
+          //     channel: {
+          //       name: "Tourtopia",
+          //       avatar:
+          //         "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde",
+          //     },
+          //     views: "1.5K",
+          //     timestamp: "1 year ago",
+          //     duration: "56:33",
+          //   },
+          //   {
+          //     id: 2,
+          //     thumbnail:
+          //       "https://images.unsplash.com/photo-1516280440614-37939bbacd81",
+          //     title: "Tyla - Water (Official Music Video)",
+          //     channel: {
+          //       name: "Tyla",
+          //       avatar:
+          //         "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+          //     },
+          //     views: "20M",
+          //     timestamp: "3 weeks ago",
+          //     duration: "3:40",
+          //   },
+          //   {
+          //     id: 3,
+          //     thumbnail:
+          //       "https://images.unsplash.com/photo-1518609878373-06d740f60d8b",
+          //     title: "RM - Wild Flower (with youjeen) Official Music Video",
+          //     channel: {
+          //       name: "HYBE",
+          //       avatar:
+          //         "https://images.unsplash.com/photo-1527980965255-d3b416303d12",
+          //     },
+          //     views: "106M",
+          //     timestamp: "7 months ago",
+          //     duration: "3:23",
+          //   },
+          // ];
+
+          renderVideos(videos);
+        } catch (error) {
+          console.error("Error fetching videos:", error);
+        }
+      }
+
+      // Render video cards
+      function renderVideos(videos) {
+        const videoGrid = document.getElementById("videoGrid");
+        videoGrid.innerHTML = videos
+          .map(
+            (video) => `
+          <div class="group cursor-pointer" onclick="playVideo(${video.id})">
+            <div class="relative rounded-xl overflow-hidden">
+              <img
+                src="${video.thumbnail}"
+                alt="${video.title}"
+                class="w-full aspect-video object-cover"
+              />
+              <span class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 text-sm rounded">
+                ${video.duration}
+              </span>
+            </div>
+            <div class="mt-3">
+              <h3 class="font-medium text-lg line-clamp-2">${video.title}</h3>
+              <div class="flex items-center gap-2 mt-2">
+                <img
+                  src="${video.channel.avatar}"
+                  alt="${video.channel.name}"
+                  class="w-6 h-6 rounded-full"
+                />
+                <span class="text-gray-400">${video.channel.name}</span>
+                ${video.channel.name === "Tyla" || video.channel.name === "HYBE" ? '<i data-lucide="music" class="w-4 h-4 text-gray-400"></i>' : ""}
+              </div>
+              <div class="text-sm text-gray-400 mt-1">
+                ${video.views} views • ${video.timestamp}
+              </div>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+
+        // Reinitialize icons for dynamically added content
+        lucide.createIcons();
+      }
+
+      // Handle video playback
+      async function playVideo(videoId) {
+        try {
+          // TODO: API Call - GET /api/videos/${videoId}
+          // const response = await fetch(`/api/videos/${videoId}`);
+          // const video = await response.json();
+
+          // TODO: API Call - GET /api/videos/${videoId}/comments
+          // const commentsResponse = await fetch(`/api/videos/${videoId}/comments`);
+          // const comments = await commentsResponse.json();
+
+          // TODO: Implement video player view
+          console.log(`Playing video ${videoId}`);
+        } catch (error) {
+          console.error("Error playing video:", error);
+        }
+      }
+
+      // Handle category selection
+      document.querySelectorAll(".category-pill").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const category = button.textContent;
+          document
+            .querySelector(".category-pill.active")
+            .classList.remove("active");
+          button.classList.add("active");
+
+          try {
+            // TODO: API Call - GET /api/videos?category=${category}
+            // const response = await fetch(`/api/videos?category=${category}`);
+            // const videos = await response.json();
+            // renderVideos(videos);
+          } catch (error) {
+            console.error("Error fetching category videos:", error);
+          }
+        });
+      });
+
+      // Handle search
+      const searchInput = document.querySelector('input[type="text"]');
+      const searchButton = searchInput.nextElementSibling.nextElementSibling;
+
+      async function handleSearch() {
+        const query = searchInput.value.trim();
+        if (!query) return;
+
+        try {
+          // TODO: API Call - GET /api/videos/search?q=${query}
+          // const response = await fetch(`/api/videos/search?q=${query}`);
+          // const videos = await response.json();
+          // renderVideos(videos);
+        } catch (error) {
+          console.error("Error searching videos:", error);
+        }
+      }
+
+      searchButton.addEventListener("click", handleSearch);
+      searchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") handleSearch();
+      });
+
+      // Initialize the app
+      fetchVideos();
+    </script>
+  </body>
+</html>

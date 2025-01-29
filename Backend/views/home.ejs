@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #282828;
+      color: #fff;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+    }
+
+    .navbar form {
+      display: flex;
+    }
+
+    /* .icon {
+  padding: 10px 20px;
+  background-color: #333;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+}
+.icon.active {
+  background-color: #ff4757;
+} */
+
+    .navbar input[type="text"] {
+      padding: 5px;
+      font-size: 1rem;
+    }
+
+    .navbar button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    /* .video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.video-card {
+  background-color: #f9f9f9;
+  padding: 10px;
+  text-align: center;
+}
+
+.video-card img {
+  width: 100%;
+  height: auto;
+} */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1e;
+      color: white;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 80px;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+      /* border: 2px solid black; */
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar img {
+      width: 30px; /* Adjust the width as per your need */
+      height: 30px; /* Adjust the height as per your need */
+    }
+
+    .sidebar ul li {
+      margin: 20px 0;
+    }
+
+    .main-content {
+      margin-left: 80px;
+      padding: 20px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: url("/images/pexels-hoach-le-dinh-1757049620-28120118.jpg")
+        center/cover no-repeat;
+      /* background-image: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0, 0, 0, 0.7) 40%
+    ),
+    40% of the bottom has the gradient url("../images/plane.jpg"); */
+      padding: 150px;
+      border-radius: 10px;
+      /* border: 2px solid black; */
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-search {
+      display: flex;
+    }
+
+    .hero-search input {
+      padding: 10px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+    }
+
+    .hero-search button {
+      padding: 10px;
+      background-color: #ff4757;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      color: white;
+      cursor: pointer;
+    }
+
+    .categories {
+      margin: 20px 0;
+      display: flex;
+      gap: 10px;
+    }
+
+    .category-btn {
+      padding: 10px 20px;
+      background-color: #333;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .category-btn.active {
+      background-color: #ff4757;
+    }
+
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .video-card {
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .video-details {
+      padding: 8px;
+    }
+
+    .video-details h3 {
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+
+    .video-details p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li>
+            <a href=""
+              ><img
+                src="/icons/home_34dp_FF007F_FILL1_wght700_GRAD0_opsz40.svg"
+                alt="icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a href=""
+              ><img
+                src="/icons/explore_34dp_FF007F_FILL1_wght700_GRAD0_opsz40.svg"
+                alt="icon"
+              />
+            </a>
+          </li>
+          <li>
+            <a href=""
+              ><img
+                src="/icons/account_circle_34dp_FF007F_FILL1_wght700_GRAD0_opsz40.svg"
+                alt="icon"
+            /></a>
+          </li>
+          <li>
+            <a href=""
+              ><img
+                src="/icons/info_34dp_FF007F_FILL1_wght700_GRAD0_opsz40.svg"
+                alt="icon"
+              />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-text">
+          <!-- <h1>Your gateway to unlimited entertainment</h1> -->
+          <h1>Welcome, <%= fullName %></h1>
+          <p>
+            With our seamless streaming technology, you can effortlessly
+            discover and enjoy content that resonates with your interests.Your
+            gateway to unlimited entertainment
+          </p>
+          <button class="hero-play-btn">▶ Play</button>
+        </div>
+        <div class="hero-search">
+          <input type="text" placeholder="Search" />
+          <button class="search-btn">Search</button>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section class="categories">
+        <!-- <button class="category-btn active">All</button>
+        <button class="category-btn">New to you</button>
+        <button class="category-btn">Live</button>
+        <button class="category-btn">Stand-Up</button>
+        <button class="category-btn">Gaming</button>
+        <button class="category-btn">Music</button> -->
+      </section>
+
+      <!-- Video Grid -->
+      <section class="video-grid"></section>
+    </main>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const apiUrl = "/api/v1/videos/homesd";
+
+      // Fetch videos from the API
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((vids) => {
+          // Process the videos
+          const videoGrid = document.querySelector(".video-grid");
+
+          vids.data.forEach((video) => {
+            // Create a card
+            const videoCard = document.createElement("div");
+            videoCard.classList.add("video-card");
+
+            // Create thumbnail
+            const thumbnail = document.createElement("img");
+            thumbnail.src = video.thumbNail;
+            thumbnail.alt = video.title;
+            videoCard.appendChild(thumbnail);
+
+            // Create details container
+            const details = document.createElement("div");
+            details.classList.add("video-details");
+
+            // Add title
+            const title = document.createElement("h3");
+            title.textContent = video.title;
+            details.appendChild(title);
+
+            // Add channel name
+            const channelName = document.createElement("p");
+            channelName.textContent = video.channelName;
+            details.appendChild(channelName);
+
+            // Add additional info
+            const info = document.createElement("p");
+            info.textContent = `${video.views} views • ${video.duration}`;
+            details.appendChild(info);
+
+            videoCard.appendChild(details);
+            videoGrid.appendChild(videoCard);
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching video data:", error);
+        });
+    });
+  </script>
+</html>
