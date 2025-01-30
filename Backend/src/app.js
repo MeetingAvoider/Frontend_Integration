@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: "http://localhost:8001",
     credentials: true,
     methods: "GET, POST, DELETE, PUT",
     allowedHeaders: ["Content-Type", "Authorization"],

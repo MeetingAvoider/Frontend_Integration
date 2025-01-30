@@ -157,7 +157,9 @@ const loginUser = asyncHandler(async (req, res) => {
     return res.status(400).json(new ApiResponse(400, {}, "User not found"));
   }
   // console.log(user, password);
+
   const isPasswordValid = await user.isPasswordCorrect(password);
+  // console.log(isPasswordValid);
   // const tempPassword = await bcrypt.hash(password, 10);
   // console.log(password);
   // user.password = password;
@@ -166,7 +168,12 @@ const loginUser = asyncHandler(async (req, res) => {
   // return res.status(200).json({ Status: "Successfully update hased password" });
 
   if (!isPasswordValid) {
-    throw new ApiError(409, "Invalid user credentials");
+    res.status(400).json({
+      message: "Wrong password",
+      success: false,
+    });
+    // console.log()
+    // throw new ApiError(409, "Invalid user credentials");
   }
 
   const { refreshToken, accessToken } = await generateTokens(user._id);
