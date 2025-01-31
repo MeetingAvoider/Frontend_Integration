@@ -30,7 +30,7 @@ const Home = ({ type }) => {
     };
     fetchVideos();
   }, [type]);
-
+k
   return (
     <Container>
       {videos.map((video) => (
